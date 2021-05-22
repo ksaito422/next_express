@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    depends_on:
+      - db
+    tty: true
+    volumes:
+      - ./work/frontend:/usr/src/app/frontend
+    ports:
+      - "${APP_PORT}:3000"
+    command: yarn dev
+    container_name: next_express_frontend
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    depends_on:
+      - db
+    tty: true
+    volumes:
+      - ./work/backend:/backend
+    ports:
+      - "${API_PORT}:8000"
+    command: yarn nodemon
+    container_name: next_express_backend
+
+  db:
+    image: mysql:8.0
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+    container_name: next_express_db
