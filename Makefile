@@ -59,3 +59,15 @@ db:
 	docker-compose exec db bash
 sql:
 	docker-compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+fresh:
+	@make migrate-undo
+	@make migrate
+	@make seed
+migrate:
+	docker-compose exec backend yarn sequelize-cli db:migrate --env development
+migrate-undo:
+	docker-compose exec backend yarn sequelize-cli db:migrate:undo --env development
+seed:
+	docker-compose exec backend yarn sequelize-cli db:seed:all --env development
+seed-undo:
+	docker-compose exec backend yarn sequelize-cli db:seed:undo:all --env development
