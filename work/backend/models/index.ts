@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import { dbSetting } from 'config/dbConfig';
 import { User } from 'models/user';
 
 const sequelize = new Sequelize({
@@ -6,9 +7,9 @@ const sequelize = new Sequelize({
   timezone: '+09:00',
   dialect: 'mysql',
   port: 3306,
-  username: 'admin',
-  password: 'secret',
-  database: 'default',
+  username: dbSetting['user'],
+  password: dbSetting['password'],
+  database: dbSetting['database'],
 });
 
 const db = {
