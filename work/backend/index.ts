@@ -1,9 +1,9 @@
 import express from 'express';
-import router from 'routes/index';
+import apiRouter from 'routes/api.route';
 
 const app = express();
 const port = 8000;
 
-app.use('/api', router);
+app.use('/api', apiRouter);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

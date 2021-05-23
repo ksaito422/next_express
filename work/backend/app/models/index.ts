@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
-import { dbSetting } from 'config/dbConfig';
-import { User } from 'models/user';
+import { dbSetting } from 'config/db.config';
+import { User } from 'app/models/user.model';
 
 // sequelizeインスタンスの作成
 const sequelize = new Sequelize({
