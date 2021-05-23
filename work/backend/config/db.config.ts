@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ path: '.env' });
+dotenv.config({ path: __dirname + '/environment/.env' });
 
 interface DatabaseTypes {
   database: string | undefined;
