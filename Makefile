@@ -39,14 +39,14 @@ logs:
 	docker-compose logs
 logs-watch:
 	docker-compose logs --follow
-log-web:
-	docker-compose logs web
-log-web-watch:
-	docker-compose logs --follow web
-log-app:
+log-back:
 	docker-compose logs backend
-log-app-watch:
+log-back-watch:
 	docker-compose logs --follow backend
+log-front:
+	docker-compose logs frontend
+log-front-watch:
+	docker-compose logs --follow frontend
 log-db:
 	docker-compose logs db
 log-db-watch:
